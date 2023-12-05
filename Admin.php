@@ -2,6 +2,8 @@
     require_once 'DATABASE/DBSession.php';
     require_once 'DATABASE/DBSignUp_View.php';
     require_once 'DATABASE/Login_View.php';
+
+
 ?>
 
 <html>
@@ -30,4 +32,47 @@
 
 <body>
 
+    <header class="navbar">
+        <a href="#" class="logo"><img src="ASSETS/IMAGES/tftg-ticon.png" alt=""></a>
+
+        <ul class="navlist">
+            <li><a href="#"> Product <i class="ri-arrow-down-s-line"></i></a></li>
+            <li><a href="#"> Special Offers </a></li>
+            <li><a href="#"> The Process </a></li>
+            <li><a href="#"> Packing </a></li>
+            <li><a href="#"> Career </a></li>
+            <li><a href="#Footer"> About </a></li>
+            <li><a href="#"> FAQ </a></li>
+
+            <!-- LOGIN NAV-->
+            <?php  if (!isset($_SESSION['user_id'])){ ?>
+
+            <li><a href="#overlay" id="Reg"><button> Log In/Sign up </button></a></li>
+
+            <?php }else{ ?>
+
+                <div class="user">
+        <li onclick="toggleUserContent()">
+            <img src="ASSETS/IMAGES/user.png" width="25px;" style="position: relative; margin-right: 10px; top:5px;">
+            <?php output_username(); ?> 
+            
+            
+        </li>
+
+        <div class="user-content" id="userContent">
+                <li><i class="ri-shopping-cart-line"></i><span> Cart</span> </li>
+            <hr class="user-setting">
+                <form action="DATABASE/Logout.php" method="POST">
+                    <li> <i class="ri-logout-box-r-line"></i><button type="submit"  id="Logout">  Logout</button> </li>
+                </form>
+        </div>
+    </div>
+
+    <?php } ?>
+
+        </ul>
+
+        <div class="bx bx-menu" style="color: black;" id="menu-icon"></div>
+    </header>
+</body>
 </html>

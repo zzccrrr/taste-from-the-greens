@@ -9,8 +9,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         require_once 'Login_Model.php';
         require_once 'Login_Controller.php';
 
-
-
         // ERRORS
         $errors = [];
 
@@ -36,10 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             die();
         }
 
-        if ($username === 'admin' && !is_username_wrong($result) && empty($errors)) {
-            header("location: ../admin.php");
-            die();
-        }
+
 
 
         $newSessionId = session_create_id();
