@@ -1,0 +1,158 @@
+/* MEDIA QUERIES */
+@media only screen and (max-width: 1280px){
+    .navbar > a > img{
+        width: 80%;
+    }
+    .navlist{
+        line-height: 50px;
+    }
+        .navlist a{
+            margin-left: 40px;
+            font-size: 12px;
+        }
+    
+        .navlist > li > a > button{
+            font-size: 10px;
+            padding: 8px 18px;
+        }
+
+    /*  BANNER  */
+.banner{
+    gap: 2.5rem;
+    padding: 0 17%;
+
+}
+    .banner img{
+        width: 420px;
+        height: auto;
+    }
+    
+ .banner-text h5{
+    font-size: 14px;
+    font-weight: 400;
+    color: gray;
+    margin-bottom: 20px;
+ } 
+
+ .banner-text h1{
+    font-family: 'Noto Sans';
+    font-size: 40px;
+    line-height: 1.1;
+    letter-spacing: -2px;
+    color: rgb(100,161,66);
+    margin: 0 0 45px;
+ } 
+
+    .banner-text h1 span.Tastes{
+        color: rgb(166,191,58);
+        font-family: 'Noto Sans';
+        font-size: 180%;
+        margin-left: 10%;
+    }
+    .banner-text h1 span.fromthe{
+        font-weight: 300;
+        font-size: 25px;
+        position: relative;
+        top: 45px;
+        left: -125px;
+    }
+    .banner-text h1 span.greens{
+        font-family: 'Great Vibes';
+        font-size: 300% !important;
+    }
+
+ .banner-text h4{
+    font-size: 18px;
+    font-weight: 600;
+    color: gray;
+    margin-bottom: 10px;
+ } 
+
+ .banner-text p{
+    font-size: 15px;
+    line-height: 1.9;
+    color: gray;
+    margin-bottom: 40px;
+ } 
+
+ .banner-text a{
+    font-size: 10px;
+    margin-left: 40px;
+ } 
+    
+/*  ICONS  */
+.icons i{
+    font-size: 18px;
+}
+
+/*  BREAK  */
+.break{
+    height: 40px;
+}
+    .break p{
+        font-size: 10px;
+    }
+    
+/*  CONTENT (PRODUCTS)  */
+    #products > h1{
+        font-size: 25px;
+    }
+
+    #products > p{
+        font-size: 12px;
+    }
+
+/*  PLACEHOLDER BASE */
+        .grid{
+            padding: 80px;
+        }
+            .grid > article{
+                padding: 30px 0;
+            }
+/*  PLACEHOLDER */            
+            .ImgHolder{
+                width: 275px;
+                height: 325px;
+            }
+                .ImgHolder > h4{
+                    font-size: 0.8rem;
+                }
+                .ImgHolder > p{
+                    font-size: 0.68rem;
+                }
+                .ImgHolder > p > span{
+                    font-size: 0.8rem;
+                }
+
+                    .ImgHolder > div > a > h3{
+                        font-size: 9px;
+                    }
+                    .ImgHolder > div > a > i{
+                        margin-right: -80px;
+                        font-size: 15px;
+                    }
+                    
+/* MORE PRODUCT */       
+.explore{
+    padding: 25px;
+    height: 250px;
+}
+    .explore h1{
+        font-size: 250%;
+        letter-spacing: -2px;
+        line-height: 65px;
+    }
+    .explore a{ /* BUTTON */
+        margin-top: 10px;
+        padding: 15px 30px;
+        font-size: 10px;
+     } 
+
+        .explore > .grid-1{ /* TEXT */
+            margin-left: 50px;
+        }    
+        .explore > .grid-2{ /* IMAGE */
+            width: 95%;
+            bottom: 50px;
+        }
+    }

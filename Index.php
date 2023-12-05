@@ -11,7 +11,7 @@
 <head>
     <title> Tastes from the Greens </title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable= no" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.00, minimum-scale=1.00">
     <link rel="icon" type="image/x-icon" href="ASSETS/IMAGES/tftg-ticon.png">
     <link rel="stylesheet" type="text/css" href="STYLES/CSS/Home.css">
    <!--FONT AWESOME-->
@@ -42,9 +42,35 @@
         <li><a href="#"> The Process </a></li>
         <li><a href="#"> Packing </a></li>
         <li><a href="#"> Career </a></li>
-        <li><a href="#"> About </a></li>
+        <li><a href="#Footer"> About </a></li>
         <li><a href="#"> FAQ </a></li>
+
+        <!-- LOGIN NAV-->
+        <?php  if (!isset($_SESSION['user_id'])){ ?>
+
         <li><a href="#overlay" id="Reg"><button> Log In/Sign up </button></a></li>
+
+        <?php }else{ ?>
+
+            <div class="user">
+    <li onclick="toggleUserContent()">
+        <img src="ASSETS/IMAGES/user.png" width="25px;" style="position: relative; margin-right: 10px; top:5px;">
+        <?php output_username(); ?> 
+        
+        
+    </li>
+
+    <div class="user-content" id="userContent">
+            <li><i class="ri-shopping-cart-line"></i><span> Cart</span> </li>
+        <hr class="user-setting">
+            <form action="DATABASE/Logout.php" method="POST">
+                <li> <i class="ri-logout-box-r-line"></i><button type="submit"  id="Logout">  Logout</button> </li>
+            </form>
+    </div>
+</div>
+
+   <?php } ?>
+
     </ul>
 
     <div class="bx bx-menu" style="color: black;" id="menu-icon"></div>
@@ -203,7 +229,7 @@
             
         </div>
         <div class="grid-2">
-            <h1>We care about the quality of <br> our <span> products </span></h1>
+            <h1>We care about the quality of our <span> products </span></h1><br>
             <p>Drinking coffee is one of the most global things you do each days here i can <br> spend a long time and comfortable time with this workspace tacilities</p>
                 <div class="child-grid">
 
@@ -327,11 +353,53 @@ check_signup_errors();
 
 
 </section>
-    <?php } ?>
+
+</form>
+
+   <?php } ?>
+
+
 
 
 
 <!--FOOTER-->
+
+<Section id="Footer">
+
+        <article>
+        <h1><span class="Tastes">Tastes</span> <span class="fromthe">from the</span><br/>
+            <span class="Greens">Greens</span></h1>
+        </article>
+
+        <article class="footer-child ">
+        <h2> Privacy </h2>
+            <p> Terms of use </p>
+            <p> Privacy Policy </p>
+            <p> Cookies </p>
+        </article>
+
+        <article class="footer-child">
+        <h2> Services </h2>
+            <p> Shop </p>
+            <p> Order ahead </p>
+            <p> Menu </p>
+        </article>
+        
+
+        <article class="footer-child">
+        <h2> About Us </h2>
+            <p> Find a location </p>
+            <p> About us </p>
+            <p> Our Story </p>
+        </article>
+
+        <article class="footer-child">
+            <h2> Social Media </h2>
+        <a href="#" class="footer-icons"><i class="ri-instagram-line"></i></a>
+        <a href="#" class="footer-icons"><i class="ri-facebook-line"></i></a>
+        <a href="#" class="footer-icons"><i class="ri-twitter-line"></i></a>
+        </article>
+</section>
 
 
 <!--SCRIPTS-->
@@ -383,6 +451,30 @@ document.getElementById('Reg').addEventListener('click', function() {
         document.getElementsByTagName("BODY")[0].style.overflow = "auto";
     });
   </script>
+
+<script>
+    function toggleUserContent(event) {
+        var userContent = document.getElementById("userContent");
+        var user = document.querySelector(".user");
+
+        userContent.classList.toggle("show");
+        user.classList.toggle("active");
+
+        event.stopPropagation();
+    }
+
+    document.addEventListener("click", function(event) {
+        var userContent = document.getElementById("userContent");
+        var user = document.querySelector(".user");
+        var targetElement = event.target;
+
+        if (targetElement.tagName !== "LI") {
+            userContent.classList.remove("show");
+            user.classList.remove("active");
+        }
+    });
+</script>
+
 </body>
 
 </html>
