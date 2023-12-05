@@ -2,13 +2,6 @@
     require_once 'DATABASE/DBSession.php';
     require_once 'DATABASE/DBSignUp_View.php';
     require_once 'DATABASE/Login_View.php';
-
-
-    if (!isset($_SESSION["user_username"]) || $_SESSION["user_username"] !== "admin") {
-        header("Location: Index.php");
-        exit;
-    }
-
 ?>
 
 <html>
