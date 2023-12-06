@@ -4,6 +4,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
 
+
     try {
         require_once 'DBHandler.php';
         require_once 'Login_Model.php';
@@ -26,15 +27,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $errors["login_incorrect"] = "May mali brodie..";
         }
 
+
+
+        
         require_once 'DBSession.php';
+
 
         if ($errors) {
             $_SESSION["errors_signup"] = $errors;
             header("location: ../index.php");
             die();
         }
-
-
 
 
         $newSessionId = session_create_id();
@@ -45,7 +48,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION["user_username"] = htmlspecialchars($result['username']);
         $_SESSION["last_regeneration"] = time();
 
-        header("location: ../index.php?login=success");
+
+        if (strtolower($username) === 'admin' && !is_username_wrong($result) && empty($errors)) {
+            header("location: ../admin.php");
+            exit();
+        } else {
+            header("location: ../index.php?login=success");
+        }
+
+
         $pdo = null;
         $stmt = null;
 

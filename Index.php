@@ -452,7 +452,7 @@ document.getElementById('Reg').addEventListener('click', function() {
     });
   </script>
 
-<script>
+<script> //USER
     function toggleUserContent(event) {
         var userContent = document.getElementById("userContent");
         var user = document.querySelector(".user");

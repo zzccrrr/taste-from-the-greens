@@ -3,6 +3,11 @@
     require_once 'DATABASE/DBSignUp_View.php';
     require_once 'DATABASE/Login_View.php';
 
+    if (!isset($_SESSION["user_id"]) || $_SESSION["user_username"] !== 'admin') {
+        header("location: index.php");
+        exit;
+    }
+
 
 ?>
 
@@ -14,7 +19,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.00, minimum-scale=1.00">
     <link rel="icon" type="image/x-icon" href="ASSETS/IMAGES/tftg-ticon.png">
-    <link rel="stylesheet" type="text/css" href="STYLES/CSS/Home.css">
+    <link rel="stylesheet" type="text/css" href="STYLES/CSS/Admin.css">
    <!--FONT AWESOME-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> 
     <!-- BOXICONS-->
@@ -31,48 +36,112 @@
 </head>
 
 <body>
+    <nav class="navbar">
+        <ul class="navbar-nav">
+            <li class="nav-item padding20">
+                    <a href="#" class="logo"><img src="ASSETS/IMAGES/tftg-icon.png" alt=""></a>
+            </li>
 
-    <header class="navbar">
-        <a href="#" class="logo"><img src="ASSETS/IMAGES/tftg-ticon.png" alt=""></a>
+            <li class="nav-item active">
+                    <a href="#Users" class="nav-link active"><p class="link-text"><i class="ri-user-fill"></i>Users</p></a>
+            </li>
 
-        <ul class="navlist">
-            <li><a href="#"> Product <i class="ri-arrow-down-s-line"></i></a></li>
-            <li><a href="#"> Special Offers </a></li>
-            <li><a href="#"> The Process </a></li>
-            <li><a href="#"> Packing </a></li>
-            <li><a href="#"> Career </a></li>
-            <li><a href="#Footer"> About </a></li>
-            <li><a href="#"> FAQ </a></li>
+            <li class="nav-item">
+                    <a href="#Orders" class="nav-link"><p class="link-text"><i class='bx bx-coffee-togo'></i>Orders</p></a>
+            </li>
 
-            <!-- LOGIN NAV-->
-            <?php  if (!isset($_SESSION['user_id'])){ ?>
 
-            <li><a href="#overlay" id="Reg"><button> Log In/Sign up </button></a></li>
+            <li class="nav-item u-bottom padding20">  <!-- LAST CHILD-->
+  
+                <?php  if (isset($_SESSION['user_id'])){ ?>
+                    <div class="user">
+                        <img src="ASSETS/IMAGES/user.png" width="20px;" style="position: relative; top:5px;">
+                        <?php output_username(); ?> 
+                    </div>
+                <?php } ?>
+                <li>
+                    <hr class="header">
+                    <form action="DATABASE/Logout.php" method="POST">
+                    <li class="Logout"> 
+                        <i class="ri-logout-box-r-line"></i><button type="submit"  id="Logout">&nbsp;Logout</button> 
+                    </li>
+                    </form>
+                </li>
+            </li>
+        </ul>
+    </nav>
 
-            <?php }else{ ?>
 
-                <div class="user">
-        <li onclick="toggleUserContent()">
-            <img src="ASSETS/IMAGES/user.png" width="25px;" style="position: relative; margin-right: 10px; top:5px;">
-            <?php output_username(); ?> 
-            
-            
-        </li>
 
-        <div class="user-content" id="userContent">
-                <li><i class="ri-shopping-cart-line"></i><span> Cart</span> </li>
-            <hr class="user-setting">
-                <form action="DATABASE/Logout.php" method="POST">
-                    <li> <i class="ri-logout-box-r-line"></i><button type="submit"  id="Logout">  Logout</button> </li>
-                </form>
-        </div>
+    <div id="Users" class="content">
+    <table>
+        <?php
+        $query = $sqlLink->query("SELECT * FROM users ORDER by id");
+        while($row = $query->fetch_array()){
+            echo "<tr>";
+            echo "<td>".$row['id']."</td>";
+            echo "<td>".$row['username'].$row['lastname']."</td>";
+            echo "<td>".$row['email']."</td>";
+            echo "</tr>";
+        }
+        ?>
+    </table>
     </div>
 
-    <?php } ?>
+    <div id="Orders" class="content">
+    bbbbbbbbbb
+    </div>
 
-        </ul>
 
-        <div class="bx bx-menu" style="color: black;" id="menu-icon"></div>
-    </header>
+
+
+
+
+    <script> //STICKY
+window.onscroll = function() {myFunction()};
+    const navbar = document.getElementById("navbar");
+    const sticky = navbar.offsetTop;
+
+    function myFunction() {
+        if (window.pageYOffset < sticky) {
+            navbar.classList.remove("sticky");
+        } else {
+            navbar.classList.add("sticky")
+        }
+    }
+</script>    
+<script> //NAV
+const navItems = document.querySelectorAll('.nav-item');
+
+navItems.forEach(item => {
+  item.addEventListener('click', () => {
+    navItems.forEach(item => {
+      item.classList.remove('active');
+    });
+    
+    item.classList.add('active');
+  });
+});
+</script>
+
+<script>//DIV
+const links = document.querySelectorAll('.nav-link');
+const contents = document.querySelectorAll('.content');
+
+links.forEach(link => {
+  link.addEventListener('click', (event) => {
+    event.preventDefault();
+    const targetId = link.getAttribute('href').substring(1);
+
+    contents.forEach(content => {
+      if (content.id === targetId) {
+        content.style.display = 'block';
+      } else {
+        content.style.display = 'none';
+      }
+    });
+  });
+});
+</script>
 </body>
 </html>
