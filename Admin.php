@@ -5,7 +5,27 @@
 
     if (!isset($_SESSION["user_id"]) || $_SESSION["user_username"] !== 'admin') {
         header("location: index.php");
-        exit;
+
+$hostname = 'localhost';
+$username = 'root';
+$password = '';
+
+// Create a new mysqli object
+$mysqli = new mysqli($hostname, $username, $password);
+
+// Check for errors
+if ($mysqli->connect_errno) {
+    printf("Connect failed: %s\n", $mysqli->connect_error);
+    exit();
+}
+
+// Run a SQL query
+$result = $mysqli->query("SELECT * FROM mytable");
+
+// Print the results
+while ($row = $result->fetch_assoc()) {
+    var_dump($row);
+}
     }
 
 
@@ -76,14 +96,26 @@
     <div id="Users" class="content">
     <table>
         <?php
-        $query = $sqlLink->query("SELECT * FROM users ORDER by id");
-        while($row = $query->fetch_array()){
-            echo "<tr>";
-            echo "<td>".$row['id']."</td>";
-            echo "<td>".$row['username'].$row['lastname']."</td>";
-            echo "<td>".$row['email']."</td>";
-            echo "</tr>";
-        }
+            $conn = mysqli_connect("localhost", "username", "password", "database");
+
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// Select the user from the database
+$result = mysqli_query($conn, "SELECT id, username, email FROM users WHERE id = 1");
+
+// Fetch the user data
+$user = mysqli_fetch_assoc($result);
+
+// Echo the user data
+echo "ID: " . $user['id'] . "\n";
+echo "Username: " . $user['username'] . "\n";
+echo "Email: " . $user['email'] . "\n";
+
+// Close the connection
+mysqli_close($conn);
         ?>
     </table>
     </div>
