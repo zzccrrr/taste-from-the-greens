@@ -42,10 +42,10 @@ CREATE TABLE `comments` (
 --
 
 CREATE TABLE `users` (
-  `ID` int(11) NOT NULL COMMENT 'ID KEY',
-  `Username` varchar(20) NOT NULL,
-  `Email` varchar(65) NOT NULL,
-  `Password` varchar(65) NOT NULL
+  `id` int(11) NOT NULL COMMENT 'ID KEY',
+  `username` varchar(20) NOT NULL,
+  `email` varchar(65) NOT NULL,
+  `password` varchar(65) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
