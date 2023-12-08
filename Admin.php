@@ -2,30 +2,12 @@
     require_once 'DATABASE/DBSession.php';
     require_once 'DATABASE/DBSignUp_View.php';
     require_once 'DATABASE/Login_View.php';
+    include_once 'DATABASE/dbh.php';
+
 
     if (!isset($_SESSION["user_id"]) || $_SESSION["user_username"] !== 'admin') {
         header("location: index.php");
-
-$hostname = 'localhost';
-$username = 'root';
-$password = '';
-
-// Create a new mysqli object
-$mysqli = new mysqli($hostname, $username, $password);
-
-// Check for errors
-if ($mysqli->connect_errno) {
-    printf("Connect failed: %s\n", $mysqli->connect_error);
-    exit();
-}
-
-// Run a SQL query
-$result = $mysqli->query("SELECT * FROM mytable");
-
-// Print the results
-while ($row = $result->fetch_assoc()) {
-    var_dump($row);
-}
+        exit();
     }
 
 
@@ -58,18 +40,21 @@ while ($row = $result->fetch_assoc()) {
 <body>
     <nav class="navbar">
         <ul class="navbar-nav">
-            <li class="nav-item padding20">
+            <li class="padding20">
                     <a href="#" class="logo"><img src="ASSETS/IMAGES/tftg-icon.png" alt=""></a>
             </li>
 
-            <li class="nav-item active">
-                    <a href="#Users" class="nav-link active"><p class="link-text"><i class="ri-user-fill"></i>Users</p></a>
+            <li class="nav-item">
+                    <a href="#Users" class="nav-link"><p class="link-text"><i class="ri-user-fill"></i>Users</p></a>
             </li>
 
             <li class="nav-item">
                     <a href="#Orders" class="nav-link"><p class="link-text"><i class='bx bx-coffee-togo'></i>Orders</p></a>
             </li>
 
+            <li class="nav-item">
+                    <a href="#Products" class="nav-link"><p class="link-text"><i class="ri-box-3-fill"></i>Products</p></a>
+            </li>
 
             <li class="nav-item u-bottom padding20">  <!-- LAST CHILD-->
   
@@ -91,89 +76,113 @@ while ($row = $result->fetch_assoc()) {
         </ul>
     </nav>
 
+    <section class="centered">
+        <div id="Users" class="content">
+            <?php
+            $sql = "SELECT * FROM users";
+            $result = mysqli_query($conn, $sql);
+            $resultCheck = mysqli_num_rows($result);
 
+            if ($resultCheck > 0) {
+                echo "<table>";
+                echo "<tr><th>ID</th><th>Username</th><th>Email</th></tr>";
 
-    <div id="Users" class="content">
-    <table>
-        <?php
-            $conn = mysqli_connect("localhost", "username", "password", "database");
+                $rowNumber = 0;
 
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $rowNumber++;
+                    $rowColor = $rowNumber % 2 == 0 ? "even" : "odd";
 
-// Select the user from the database
-$result = mysqli_query($conn, "SELECT id, username, email FROM users WHERE id = 1");
+                    echo "<tr class='$rowColor'>";
+                    echo "<td>" . $row['id'] . "</td>";
+                    echo "<td>" . $row['username'] . "</td>";
+                    echo "<td>" . $row['email'] . "</td>";
+                    echo "</tr>";
+                }
 
-// Fetch the user data
-$user = mysqli_fetch_assoc($result);
+                echo "</table>";
+            }
+            ?>
+        </div>
+    </section>
 
-// Echo the user data
-echo "ID: " . $user['id'] . "\n";
-echo "Username: " . $user['username'] . "\n";
-echo "Email: " . $user['email'] . "\n";
-
-// Close the connection
-mysqli_close($conn);
-        ?>
-    </table>
-    </div>
-
-    <div id="Orders" class="content">
-    bbbbbbbbbb
-    </div>
-
-
-
-
-
-
-    <script> //STICKY
-window.onscroll = function() {myFunction()};
-    const navbar = document.getElementById("navbar");
-    const sticky = navbar.offsetTop;
-
-    function myFunction() {
-        if (window.pageYOffset < sticky) {
-            navbar.classList.remove("sticky");
-        } else {
-            navbar.classList.add("sticky")
-        }
-    }
-</script>    
-<script> //NAV
-const navItems = document.querySelectorAll('.nav-item');
-
-navItems.forEach(item => {
-  item.addEventListener('click', () => {
-    navItems.forEach(item => {
-      item.classList.remove('active');
-    });
+    <section class="centered">
+        <div id="Orders" class="content">
+        <p>samplebbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</p>
+        </div>
+    </section>
     
-    item.classList.add('active');
-  });
-});
-</script>
 
-<script>//DIV
-const links = document.querySelectorAll('.nav-link');
-const contents = document.querySelectorAll('.content');
+    <section class="centered">
+  <div id="Products" class="content">
+  <?php
+            $sql = "SELECT * FROM products";
+            $result = mysqli_query($conn, $sql);
+            $resultCheck = mysqli_num_rows($result);
 
-links.forEach(link => {
-  link.addEventListener('click', (event) => {
-    event.preventDefault();
-    const targetId = link.getAttribute('href').substring(1);
+            if ($resultCheck > 0) {
+                echo "<table>";
+                echo "<tr><th>ID</th><th>Name of Product</th><th>Price</th></tr>";
 
-    contents.forEach(content => {
-      if (content.id === targetId) {
-        content.style.display = 'block';
-      } else {
-        content.style.display = 'none';
-      }
+                $rowNumber = 0;
+
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $rowNumber++;
+                    $rowColor = $rowNumber % 2 == 0 ? "even" : "odd";
+
+                    echo "<tr class='$rowColor'>";
+                    echo "<td>" . $row['ID'] . "</td>";
+                    echo "<td>" . $row['Name'] . "</td>";
+                    echo "<td>" . $row['Price'] . "</td>";
+                    echo "</tr>";
+                }
+
+                echo "</table>";
+            }
+            ?>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+  
+<script>
+  // NAV
+  const navItems = document.querySelectorAll('.nav-item');
+
+  navItems.forEach(item => {
+    item.addEventListener('click', () => {
+      navItems.forEach(item => {
+        item.classList.remove('active');
+      });
+
+      item.classList.add('active');
     });
   });
-});
+
+  // DIV
+  const links = document.querySelectorAll('.nav-link');
+  const contents = document.querySelectorAll('.content');
+
+  links.forEach(link => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      const targetId = link.getAttribute('href').substring(1);
+
+      contents.forEach(content => {
+        if (content.id === targetId) {
+          content.style.display = 'block';
+        } else {
+          content.style.display = 'none';
+        }
+      });
+    });
+  });
 </script>
 </body>
 </html>

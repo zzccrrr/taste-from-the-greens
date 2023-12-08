@@ -21,7 +21,7 @@ html, body{
     overflow-x: hidden;
 }
 body{
-    background-color: #F2F2F2;
+    background-color: #EAEEF1;
     animation: fadeInAnimation ease 3s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
@@ -53,6 +53,7 @@ body{
     background-color: rgba(122,172,94,0.5);
     transition: width 200ms ease;
     box-shadow: 4px 0 8px rgba(0, 0, 0, 0.2);
+    z-index: 50000;
 }
 
 .navbar-nav{
@@ -96,13 +97,13 @@ body{
 
 .nav-link:hover{
     filter: grayscale(0%) opacity(1);
-    background: rgba(122,172,94,0.6);
+    background: #EAEEF1;
 }
     .nav-link:hover .link-text{
         color:white;
     }
 .nav-item.active{
-    background: rgba(122,172,94,0.6);
+    background: #EAEEF1;
 }
 
 
@@ -164,6 +165,40 @@ body{
 
 .content {
     display: none;
-    background-color: red;
-    margin: 200px;
+    background-color: #F5F5F5;
   }
+
+
+
+/* TABLE */
+table{
+    padding: 5px;
+    text-align: center;
+}
+td{
+    padding: 10px;
+    margin: 5px;
+}
+
+
+.odd {
+    background-color: #F0F0F0;
+}
+.even {
+    background-color: #ece3e3;
+}
+
+/*STYLES */
+.centered {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    left: 0;
+    right: 0;
+}
+
+.centered table {
+    margin: 0 auto;
+}

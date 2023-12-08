@@ -136,8 +136,6 @@
                     <div>
                         <a href="#"><h3>Add to cart <i class="ri-arrow-right-line"></i></h3></a>
                         <a href="#" class="heart">
-                            <i class="ri-heart-line"></i>
-                            <i class="ri-heart-fill"></i>
                         </a>
                     </div>
                 </div>    
@@ -155,8 +153,6 @@
                     <div>
                         <a href="#"><h3>Add to cart <i class="ri-arrow-right-line"></i></h3></a>
                         <a href="#" class="heart">
-                            <i class="ri-heart-line"></i>
-                            <i class="ri-heart-fill"></i>
                         </a>
                     </div>
                 </div>    
@@ -174,8 +170,6 @@
                     <div>
                         <a href="#"><h3>Add to cart <i class="ri-arrow-right-line"></i></h3></a>
                         <a href="#" class="heart">
-                            <i class="ri-heart-line"></i>
-                            <i class="ri-heart-fill"></i>
                         </a>
                     </div>
                 </div>    
@@ -193,8 +187,6 @@
                     <div>
                         <a href="#"><h3>Add to cart <i class="ri-arrow-right-line"></i></h3></a>
                         <a href="#" class="heart">
-                            <i class="ri-heart-line"></i>
-                            <i class="ri-heart-fill"></i>
                         </a>
                     </div>
                 </div>    
@@ -295,7 +287,7 @@
         <div class="form sign-in">
             <h2>Welcome back,</h2>
 
-            <form action="DATABASE/Login.php" method="POST"> <!--LOGIN FORM --> 
+            <form action="DATABASE/Login.php" method="POST"  autocomplete="off"> <!--LOGIN FORM --> 
                 <label>
                     <span>Username</span>
                     <input name="username" type="text"/>
@@ -331,7 +323,7 @@
                 <div class="form sign-up">
                 <h2>Time to feel like home,</h2>
 
-                <form action="DATABASE/DBSignUp.php" method="POST">  <!--REG FORM (PHPVIEW) --> 
+                <form action="DATABASE/DBSignUp.php" method="POST"  autocomplete="off">  <!--REG FORM (PHPVIEW) --> 
                     <?php
                     signup_inputs();
                     ?>
