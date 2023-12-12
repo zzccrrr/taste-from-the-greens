@@ -28,7 +28,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
 
             }
             if(is_email_registered($pdo, $email)){
-                $errors["email_used"] = "Taken na siya, este ang email aybol (Ingatan mo siya.. binalewala nyako dahil sayo..)";
+                $errors["email_used"] = "Taken na siya.. este ang email, aybol";
 
             }
 

@@ -140,7 +140,7 @@ header{
         width: 100%;
         background-color: rgb(100,161,66);
         animation: slideDown 0.3s ease forwards;
-        box-shadow: 3px 5px rgba(0,0,0,0.3);
+        /**box-shadow: 3px 5px rgba(0,0,0,0.3);**/
         line-height: 60px !important;
         z-index: 1;
     }
@@ -276,7 +276,6 @@ hr.user-setting{
     border-radius: 30px;
     text-transform: uppercase;
     transition: all .55 ease;
-    margin-left: 50px;
  } 
     .banner-text a:hover{
         background: transparent;
@@ -368,7 +367,6 @@ hr.user-setting{
     }
 /*  PLACEHOLDER BASE */
     .content{
-        margin-top: 60px;
         background-color: #F2F2F2;
         height: 450px;
         color: black;
@@ -378,8 +376,8 @@ hr.user-setting{
             background-color: #F2F2F2;
             display: grid;
             grid-template-columns: auto auto auto auto;
-            grid-template-rows: auto auto auto;
             gap: 10px;
+            grid-row-gap: 50px;
             padding: 80px;
         }
             .grid > article{
@@ -612,6 +610,8 @@ hr.user-setting{
             }
 
 
+
+/* FOOTER */       
 #footer{
     margin-top: 150px;
     font-family: Poppins;
@@ -674,6 +674,10 @@ hr.user-setting{
         color: rgb(100,161,66);
         transform: translateY(-5px);
     }
+
+#reg-1:hover{
+    background-color: rgba(255,255,255,0.8);
+}
 
 
 

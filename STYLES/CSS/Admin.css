@@ -1,3 +1,5 @@
+@import url('Form.css');
+
 *{
     transition: all 0.4s ease;
     padding: 0;
@@ -27,6 +29,10 @@ body{
     animation-fill-mode: forwards;
     font-family: 'Poppins', sans-serif;
 }
+    a{
+        text-decoration: none;
+        color: black;
+    }
 
     ::-webkit-scrollbar{
         display: none;
@@ -52,7 +58,6 @@ body{
     position: fixed;
     background-color: rgba(122,172,94,0.5);
     transition: width 200ms ease;
-    box-shadow: 4px 0 8px rgba(0, 0, 0, 0.2);
     z-index: 50000;
 }
 
@@ -100,7 +105,7 @@ body{
     background: #EAEEF1;
 }
     .nav-link:hover .link-text{
-        color:white;
+        color:rgb(100,161,67);
     }
 .nav-item.active{
     background: #EAEEF1;
@@ -165,38 +170,95 @@ body{
 
 .content {
     display: none;
-    background-color: #F5F5F5;
+    background: #EAEEF1;
   }
 
+.content-section{
 
+    background: rgb(234,238,241);
+}
 
+.content-text{
+    margin-left: 25px;
+}
 /* TABLE */
 table{
-    padding: 5px;
+    padding: 20px;
     text-align: center;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
 }
-td{
-    padding: 10px;
-    margin: 5px;
-}
+    th{
+        font-size: 11px;
+        padding: 10px;
+
+    }
+    tr{
+        background-color: rgba(128, 128, 128,0.1);
+        padding: 5px;
+    }
+
+    td{
+        padding: 10px;
+
+    }
+    th, td{
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+
+    }
+
+    tr td {
+        border: 1px solid rgba(0,0,0,0.2);
+        border-right: none;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        
+      }
+
+        td.middle{
+            border-left: none;
+            border-radius: 0;
+        }
+
+        td.right{
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            border-left: none;
+            border-right: 1px solid rgba(0,0,0,0.2);
+        }
+        td > button{
+            border: 0.5px solid transparent;
+            background-color: rgba(0,0,0,0.1);
+            border-radius: 5px;
+            padding: 5px;
+            color: black;
+            cursor: pointer;
+            width: 25px;
+        }
 
 
 .odd {
     background-color: #F0F0F0;
 }
+
+
+
 .even {
-    background-color: #ece3e3;
+    background-color: rgba(122,172,94,0.5);
 }
 
 /*STYLES */
 .centered {
     position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-left: 160px;
     height: 100vh;
     left: 0;
     right: 0;
+    padding: 50px;
 }
 
 .centered table {

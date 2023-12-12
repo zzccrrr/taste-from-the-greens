@@ -32,6 +32,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href='https://fonts.googleapis.com/css?family=Great+Vibes|Noto+Sans|Oswald|Raleway|Poppins' rel='stylesheet'>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
 
     
     
@@ -41,10 +43,10 @@
     <nav class="navbar">
         <ul class="navbar-nav">
             <li class="padding20">
-                    <a href="#" class="logo"><img src="ASSETS/IMAGES/tftg-icon.png" alt=""></a>
+                    <a href="#" class="logo"><img src="ASSETS/IMAGES/tftg-iconw.png" alt=""></a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item active">
                     <a href="#Users" class="nav-link"><p class="link-text"><i class="ri-user-fill"></i>Users</p></a>
             </li>
 
@@ -76,44 +78,55 @@
         </ul>
     </nav>
 
-    <section class="centered">
-        <div id="Users" class="content">
+    <section class="centered content-section">
+        <div id="Users" class="content"  style="display: block">
+          <div class="content-text">
+            <h2> Users </h2>
+            <p> List of all users </p>
+          </div>
+
             <?php
-            $sql = "SELECT * FROM users";
-            $result = mysqli_query($conn, $sql);
-            $resultCheck = mysqli_num_rows($result);
+              $sql = "SELECT * FROM users";
+              $result = mysqli_query($conn, $sql);
+              $resultCheck = mysqli_num_rows($result);
 
-            if ($resultCheck > 0) {
-                echo "<table>";
-                echo "<tr><th>ID</th><th>Username</th><th>Email</th></tr>";
+              if ($resultCheck > 0) {
+                  echo "<table>";
+                  echo "<tr><th>ID</th><th>Username</th><th>Email</th><th>Edit</th><th>Delete</th></tr>";
 
-                $rowNumber = 0;
+                  $rowNumber = 0;
 
-                while ($row = mysqli_fetch_assoc($result)) {
-                    $rowNumber++;
-                    $rowColor = $rowNumber % 2 == 0 ? "even" : "odd";
+                  while ($row = mysqli_fetch_assoc($result)) {
+                      $rowNumber++;
+                      $rowColor = $rowNumber % 2 == 0 ? "even" : "odd";
 
-                    echo "<tr class='$rowColor'>";
-                    echo "<td>" . $row['id'] . "</td>";
-                    echo "<td>" . $row['username'] . "</td>";
-                    echo "<td>" . $row['email'] . "</td>";
-                    echo "</tr>";
-                }
-
-                echo "</table>";
-            }
+                      echo "<tr class='$rowColor'>";
+                      echo "<td>" . $row['id'] . "</td>";
+                      echo "<td class='middle'>" . $row['username'] . "</td>";
+                      echo "<td class='middle'>" . $row['email'] . "</td>";
             ?>
-        </div>
-    </section>
 
-    <section class="centered">
+                    
+                      <td class='middle button'> <button class='Edit' onclick="setFlagAndReload('admin.php?edit=<?=$row['id'];?>');"><a> <i class='ri-edit-fill'></i> </a> </button> </td>
+                      <td class='right button'> <button> <a href="DATABASE/delete.php?delete=<?=$row['id'];?>"> <i class='ri-delete-bin-7-fill'></i> </a> </button> </td>
+              <?php
+                        echo "</tr>";
+                    }
+
+                    echo "</table>";
+                }
+              ?>
+        </div>
+
+
+
         <div id="Orders" class="content">
         <p>samplebbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</p>
         </div>
-    </section>
+
     
 
-    <section class="centered">
+
   <div id="Products" class="content">
   <?php
             $sql = "SELECT * FROM products";
@@ -132,15 +145,39 @@
 
                     echo "<tr class='$rowColor'>";
                     echo "<td>" . $row['ID'] . "</td>";
-                    echo "<td>" . $row['Name'] . "</td>";
-                    echo "<td>" . $row['Price'] . "</td>";
+                    echo "<td class='middle'>" . $row['Name'] . "</td>";
+                    echo "<td class='right'>" . $row['Price'] . "</td>";
                     echo "</tr>";
                 }
 
                 echo "</table>";
             }
-            ?>
+    ?>
   </div>
+</section>
+
+<section>
+<div id="overlay"></div>
+
+
+<div id="cont" class="cont">
+<?php 
+include "DATABASE/dbh.php";
+$id = $_GET['edit'];
+$sql = "SELECT * FROM users WHERE id = '$id'";
+$query = $conn->query($sql);
+$row = $query->fetch_assoc();
+?>
+
+<form method="POST" action="DATABASE/edit.php" autocomplete="off">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" value="<?=$row['username']?>">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" value="<?=$row['email']?>">
+    <button type="submit" name="submit">Update</button>
+</form>
+</div>
+
 </section>
 
 
@@ -177,12 +214,51 @@
       contents.forEach(content => {
         if (content.id === targetId) {
           content.style.display = 'block';
+          content.style.pointerEvents = 'auto';
+          content.style.zIndex = '10';
         } else {
           content.style.display = 'none';
+          content.style.zIndex = '-1';
+          content.style.pointerEvents = 'none';
         }
       });
     });
   });
 </script>
+
+<script>//DELETE OVERLAY
+$(document).ready(function() {
+  // Check if the flag is set in Local Storage
+  if (localStorage.getItem('executeCodeAfterRefresh')) {
+    $('#cont').css('display', 'block');
+    $('#overlay').css('display', 'block');
+    $('body').css('overflow-y', 'hidden');
+    // Clear the flag from Local Storage
+    localStorage.removeItem('executeCodeAfterRefresh');
+  }
+});
+
+function setFlagAndReload(url) {
+  // Set the flag in Local Storage
+  localStorage.setItem('executeCodeAfterRefresh', 'true');
+  // Reload the page
+  window.location.href = url;
+}
+
+    $('#overlay').click(function(event) {
+        event.preventDefault();
+        $('#cont').css('display', 'none');
+        $('#overlay').css('display', 'none');
+        $('body').css('overflow', 'auto');
+    });
+    
+    $('.navbar').click(function(event) {
+        $('#cont').css('display', 'none');
+        $('#overlay').css('display', 'none');
+        $('body').css('overflow', 'auto');
+    });
+
+
+  </script>
 </body>
 </html>

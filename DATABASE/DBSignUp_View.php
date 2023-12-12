@@ -23,13 +23,13 @@ function signup_inputs(){
         echo '
         <label>
             <span>Email</span>
-            <input type="email" name="email" placeholder="IMissYouKade@gmail.com" value="' . $_SESSION["signup_data"]["email"] . '"/>
+            <input type="email" name="email" placeholder="Email@gmail.com" value="' . $_SESSION["signup_data"]["email"] . '"/>
         </label>';
     } else {
         echo '
         <label>
             <span>Email</span>
-            <input type="email" name="email" placeholder="IMissYouKade@gmail.com"/>
+            <input type="email" name="email" placeholder="Email@gmail.com"/>
         </label>
         ';
     }
@@ -56,6 +56,6 @@ function check_signup_errors(){
         unset($_SESSION['errors_signup']);
     }else if (isset($_GET["signup"]) && $_GET["signup"] === "success") {
         echo '<br>';
-        echo '<script>alert("Thank you for signing up!");</script>';
+        echo '<script>alert("Thank you for signing up! Please Sign up");</script>';
     }
 }

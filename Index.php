@@ -37,7 +37,7 @@
     <a href="#" class="logo"><img src="ASSETS/IMAGES/tftg-ticon.png" alt=""></a>
 
     <ul class="navlist">
-        <li><a href="#"> Product <i class="ri-arrow-down-s-line"></i></a></li>
+        <li><a href="#"> Product</a></li>
         <li><a href="#"> Special Offers </a></li>
         <li><a href="#"> The Process </a></li>
         <li><a href="#"> Packing </a></li>
@@ -182,7 +182,7 @@
                     <img alt=""
                          src="https://barakacoffee.com/cdn/shop/products/2022-Bags_Web_Jayuya_600x@2x.png?v=1652889529" width="80%"/>
                     <p>Blend</p>
-                    <h4>Miss ko na siya :(</h4>
+                    <h4>Wintermelon</h4>
                     <p><span>₱150</span></p>
                     <div>
                         <a href="#"><h3>Add to cart <i class="ri-arrow-right-line"></i></h3></a>
@@ -195,6 +195,8 @@
     </article>
 
 </section>   
+<?php
+    if (!isset($_SESSION['user_id'])){ ?>
 
 
 <!--MORE PRODUCT-->
@@ -225,31 +227,31 @@
             <p>Drinking coffee is one of the most global things you do each days here i can <br> spend a long time and comfortable time with this workspace tacilities</p>
                 <div class="child-grid">
 
-                        <img alt="" src="ASSETS/IMAGES/placeholder.png" width="100px;"/>
+                        <img alt="" src="ASSETS/IMAGES/chat.png" width="100px;"/>
                         <div class="child-grid-text">
                             <h1>Active Community</h1>
                             <p>You can reach out whenever <br> you want!</p>
                         </div>
                         
 
-                        <img alt="" src="ASSETS/IMAGES/placeholder.png" width="100px;" />
+                        <img alt="" src="ASSETS/IMAGES/recycle.png" width="100px;" />
                         <div class="child-grid-text">
                             <h1>Biodiversity friendly</h1>
                             <p>we recycle chena</p>
                         </div>
 
 
-                        <img alt="" src="ASSETS/IMAGES/placeholder.png" width="100px;" />
+                        <img alt="" src="ASSETS/IMAGES/milktea.png" width="100px;" />
                         <div class="child-grid-text">
                             <h1>Premium Quality</h1>
-                            <p>A premium coffee is what <br> our customer deserves</p>
+                            <p>A premium milk tea is what <br> our customer deserves</p>
                         </div>
                         
 
                         <img alt="" src="ASSETS/IMAGES/placeholder.png" width="100px;" />
                         <div class="child-grid-text">
-                            <h1>Miss ko na siya</h1>
-                            <p>:(</p>
+                            <h1>ewan</h1>
+                            <p>sample</p>
                         </div>
                 </div>
         </div>
@@ -257,8 +259,6 @@
 </section>
 
 <!--JOIN -->
-<?php
-    if (!isset($_SESSION['user_id'])){ ?>
 
 <section id="Join">
     <div class="Join">
@@ -296,7 +296,6 @@
                     <span>Password</span>
                     <input type="password" name="password" />
                 </label>
-                <p class="forgot-pass">Forgot password?</p>
                 <button type="submit" class="submit login-btn">Sign In</button>
             </form>   
             
@@ -313,7 +312,7 @@
                 </div>
                 <div class="img__text m--in">
                     <h2>One of us?</h2>
-                    <p>Imy "K" :(</p>
+                    <p>Sign in back and see what we got in store for you!</p>
                 </div>
                 <div class="img__btn">
                     <span class="m--up">Sign Up</span>
@@ -351,9 +350,169 @@ check_signup_errors();
    <?php } ?>
 
 
+<!--PRODUCTS-->
+
+<section id="Products" class="center" style="margin-bottom: 45%">
+    <i class='bx bx-coffee-togo' style="color: rgba(0,0,0,0.5)"></i>
+    <h1> Our Delectable Products</h1>
+    <p> Choose from our wide variety of products ranging from classic coffee beverages, smooth boba milk teas, up all the way to our greeny matcha variants!</p>
+
+    <article class="content grid">
+
+        <article> <!--FIRST ROW-->
+            <div class="center">
+                <div class="ImgHolder">
+                    <img alt=""
+                         src="https://barakacoffee.com/cdn/shop/products/2022-Bags_Web_Jayuya_600x@2x.png?v=1652889529" width="80%"/>
+                    <p>Blend</p>
+                    <h4>Chocomalt Cream Puff </h4>
+                    <p><span>₱150</span></p>
+                    <div>
+                        <a href="#"><h3>Add to cart <i class="ri-arrow-right-line"></i></h3></a>
+                        <a href="#" class="heart">
+                        </a>
+                    </div>
+                </div>    
+            </div>
+        </article>
+
+        <article>
+            <div class="center">
+                <div class="ImgHolder">
+                    <img alt=""
+                         src="https://barakacoffee.com/cdn/shop/products/2022-Bags_Web_Jayuya_600x@2x.png?v=1652889529" width="80%"/>
+                    <p>Blend</p>
+                    <h4>Iced Matcha Green Tea Latte </h4>
+                    <p><span>₱150</span></p>
+                    <div>
+                        <a href="#"><h3>Add to cart <i class="ri-arrow-right-line"></i></h3></a>
+                        <a href="#" class="heart">
+                        </a>
+                    </div>
+                </div>    
+            </div>
+        </article>
+
+        <article>
+            <div class="center">
+                <div class="ImgHolder">
+                    <img alt=""
+                         src="https://barakacoffee.com/cdn/shop/products/2022-Bags_Web_Jayuya_600x@2x.png?v=1652889529" width="80%"/>
+                    <p>Blend</p>
+                    <h4>Cookies and Cream Puff  </h4>
+                    <p><span>₱150</span></p>
+                    <div>
+                        <a href="#"><h3>Add to cart <i class="ri-arrow-right-line"></i></h3></a>
+                        <a href="#" class="heart">
+                        </a>
+                    </div>
+                </div>    
+            </div>
+        </article>
+
+        <article>
+            <div class="center">
+                <div class="ImgHolder">
+                    <img alt=""
+                         src="https://barakacoffee.com/cdn/shop/products/2022-Bags_Web_Jayuya_600x@2x.png?v=1652889529" width="80%"/>
+                    <p>Blend</p>
+                    <h4>Wintermelon</h4>
+                    <p><span>₱150</span></p>
+                    <div>
+                        <a href="#"><h3>Add to cart <i class="ri-arrow-right-line"></i></h3></a>
+                        <a href="#" class="heart">
+                        </a>
+                    </div>
+                </div>    
+            </div>
+        </article>
+
+        <article> <!--SECOND ROW-->
+            <div class="center">
+                <div class="ImgHolder">
+                    <img alt=""
+                         src="https://barakacoffee.com/cdn/shop/products/2022-Bags_Web_Jayuya_600x@2x.png?v=1652889529" width="80%"/>
+                    <p>Blend</p>
+                    <h4>Chocomalt Cream Puff </h4>
+                    <p><span>₱150</span></p>
+                    <div>
+                        <a href="#"><h3>Add to cart <i class="ri-arrow-right-line"></i></h3></a>
+                        <a href="#" class="heart">
+                        </a>
+                    </div>
+                </div>    
+            </div>
+        </article>
+
+        <article>
+            <div class="center">
+                <div class="ImgHolder">
+                    <img alt=""
+                         src="https://barakacoffee.com/cdn/shop/products/2022-Bags_Web_Jayuya_600x@2x.png?v=1652889529" width="80%"/>
+                    <p>Blend</p>
+                    <h4>Iced Matcha Green Tea Latte </h4>
+                    <p><span>₱150</span></p>
+                    <div>
+                        <a href="#"><h3>Add to cart <i class="ri-arrow-right-line"></i></h3></a>
+                        <a href="#" class="heart">
+                        </a>
+                    </div>
+                </div>    
+            </div>
+        </article>
+
+        <article>
+            <div class="center">
+                <div class="ImgHolder">
+                    <img alt=""
+                         src="https://barakacoffee.com/cdn/shop/products/2022-Bags_Web_Jayuya_600x@2x.png?v=1652889529" width="80%"/>
+                    <p>Blend</p>
+                    <h4>Cookies and Cream Puff  </h4>
+                    <p><span>₱150</span></p>
+                    <div>
+                        <a href="#"><h3>Add to cart <i class="ri-arrow-right-line"></i></h3></a>
+                        <a href="#" class="heart">
+                        </a>
+                    </div>
+                </div>    
+            </div>
+        </article>
+
+        <article>
+            <div class="center">
+                <div class="ImgHolder">
+                    <img alt=""
+                         src="https://barakacoffee.com/cdn/shop/products/2022-Bags_Web_Jayuya_600x@2x.png?v=1652889529" width="80%"/>
+                    <p>Blend</p>
+                    <h4>Wintermelon</h4>
+                    <p><span>₱150</span></p>
+                    <div>
+                        <a href="#"><h3>Add to cart <i class="ri-arrow-right-line"></i></h3></a>
+                        <a href="#" class="heart">
+                        </a>
+                    </div>
+                </div>    
+            </div>
+        </article>
+    </article>
+
+    
 
 
 
+
+
+
+
+
+
+
+
+</section>
+
+
+
+ 
 <!--FOOTER-->
 
 <Section id="Footer">
@@ -392,6 +551,21 @@ check_signup_errors();
         <a href="#" class="footer-icons"><i class="ri-twitter-line"></i></a>
         </article>
 </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <!--SCRIPTS-->
