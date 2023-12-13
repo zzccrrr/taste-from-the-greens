@@ -3,6 +3,7 @@
 
   if(isset($_POST["submit"])){
 
+    $id = $_POST["id"];
     $username = $_POST["username"];
     $email = $_POST["email"];
 

@@ -57,7 +57,9 @@
             <li class="nav-item">
                     <a href="#Products" class="nav-link"><p class="link-text"><i class="ri-box-3-fill"></i>Products</p></a>
             </li>
-
+            <li class="nav-item">
+                    <a href="#Ingredients" class="nav-link"><p class="link-text"><i class='bx bxs-coffee-bean'></i>Ingredients</p></a>
+            </li>
             <li class="nav-item u-bottom padding20">  <!-- LAST CHILD-->
   
                 <?php  if (isset($_SESSION['user_id'])){ ?>
@@ -78,13 +80,13 @@
         </ul>
     </nav>
 
-    <section class="centered content-section">
+<section class="centered content-section">
         <div id="Users" class="content"  style="display: block">
           <div class="content-text">
             <h2> Users </h2>
             <p> List of all users </p>
           </div>
-
+                  <button id="Reg" class="add" style="margin-left: 25px; margin-top:8px;"><i class="ri-add-fill"></i></button>
             <?php
               $sql = "SELECT * FROM users";
               $result = mysqli_query($conn, $sql);
@@ -121,13 +123,56 @@
 
 
         <div id="Orders" class="content">
-        <p>samplebbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</p>
+        <div class="content-text">
+            <h2> Orders </h2>
+            <p> List of all Orders </p>
+          </div>
+          <button class="add" style="margin-left: 25px; margin-top:8px;"><i class="ri-add-fill"></i></button>
+  <?php
+            $sql = "SELECT * FROM orders";
+            $result = mysqli_query($conn, $sql);
+            $resultCheck = mysqli_num_rows($result);
+
+            if ($resultCheck > 0) {
+                echo "<table>";
+                echo "<tr><th>Order ID</th><th>Recipient</th><th>Product</th><th>Quantity</th><th>Total</th><th>Date</th><th>Edit</th><th>Delete</th></tr>";
+
+                $rowNumber = 0;
+
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $rowNumber++;
+                    $rowColor = $rowNumber % 2 == 0 ? "even" : "odd";
+
+                    echo "<tr class='$rowColor'>";
+                    echo "<td>" . $row['ID'] . "</td>";
+                    echo "<td class='middle'>" . $row['Recipient'] . "</td>";
+                    echo "<td class='middle'>" . $row['Product'] . "</td>";
+                    echo "<td class='middle'>" . $row['Quantity'] . "</td>";
+                    echo "<td class='middle'>" . $row['Total'] . "</td>";
+                    echo "<td class='middle'>" . $row['Date'] . "</td>";
+                    ?>
+                      <td class='middle button'> <button ><a> <i class='ri-edit-fill'></i> </a> </button> </td>
+                      <td class='right button'> <button> <a> <i class='ri-delete-bin-7-fill'></i> </a> </button> </td>
+
+
+                    <?php
+                    echo "</tr>";
+                }
+
+                echo "</table>";
+            }
+          ?>
         </div>
 
     
 
 
   <div id="Products" class="content">
+          <div class="content-text">
+            <h2> Products </h2>
+            <p> List of all products </p>
+          </div>
+          <button class="add" style="margin-left: 25px; margin-top:8px;"><i class="ri-add-fill"></i></button>
   <?php
             $sql = "SELECT * FROM products";
             $result = mysqli_query($conn, $sql);
@@ -135,7 +180,7 @@
 
             if ($resultCheck > 0) {
                 echo "<table>";
-                echo "<tr><th>ID</th><th>Name of Product</th><th>Price</th></tr>";
+                echo "<tr><th>ID</th><th>Name of Product</th><th>Price</th><th>Edit</th><th>Delete</th></tr>";
 
                 $rowNumber = 0;
 
@@ -146,13 +191,116 @@
                     echo "<tr class='$rowColor'>";
                     echo "<td>" . $row['ID'] . "</td>";
                     echo "<td class='middle'>" . $row['Name'] . "</td>";
-                    echo "<td class='right'>" . $row['Price'] . "</td>";
+                    echo "<td class='middle'>" . $row['Price'] . "</td>";
+                    ?>
+                      <td class='middle button'> <button ><a> <i class='ri-edit-fill'></i> </a> </button> </td>
+                      <td class='right button'> <button> <a> <i class='ri-delete-bin-7-fill'></i> </a> </button> </td>
+
+
+                    <?php
                     echo "</tr>";
                 }
 
                 echo "</table>";
             }
-    ?>
+          ?>
+  </div>
+
+  <div id="Ingredients" class="content">
+    <article class="grid">
+          <div class="content-text">
+            <h2> Ingredients</h2>
+            <p> Input available ingredients to see what products could be made </p>
+            <button class="add" style="margin-top:8px;"><i class="ri-add-fill"></i></button>
+         
+          <table style="width:20%; margin-left: -50px;">
+          <tr><th>Ingredient</th><th>Available Amount</th><th>Measurement</th><th>Per cup:</th><th>Small</th><th>Regular</th><th>Large</th><th>Edit</th><th>Delete</th></tr>
+            <tr>
+              <th>Sugar <br/></th>
+              <td>~57 </td>
+              <td class="middle">Grams <span>(g)</span></td>
+              <td class="middle"><!--Interval--></td>
+              <td class="middle">~42<span>g</span></td>
+              <td class="middle">~57<span>g</span></td>
+              <td class="middle">~60<span>g</span></td>
+              <td class='middle button'> <button ><a> <i class='ri-edit-fill'></i> </a> </button> </td>
+              <td class='right button'> <button> <a> <i class='ri-delete-bin-7-fill'></i> </a> </button> </td>
+            </tr>
+            <tr>
+              <th>Milk <br/></th>
+              <td>32<span>oz</span></td>
+              <td class="middle">Ounce <span>(oz)</span</td>
+              <td class="middle"><!--Interval--></td>
+              <td class="middle">~8<span>oz</span></td>
+              <td class="middle">~8<span>oz</span></td>
+              <td class="middle">~8.5<span>oz</span></td>
+              <td class='middle button'> <button ><a> <i class='ri-edit-fill'></i> </a> </button> </td>
+              <td class='right button'> <button> <a> <i class='ri-delete-bin-7-fill'></i> </a> </button> </td>
+            </tr>
+            <tr>
+            <th>Jasmine Tea Leaves <br/></th>
+              <td>64<span>pieces</span></td>
+              <td class="middle">Tablespoon<span>(tbsp)</span</td>
+              <td class="middle"><!--Interval--></td>
+              <td class="middle">~1<span>tbsp</span></td>
+              <td class="middle">~1<span>tbsp</span></td>
+              <td class="middle">~1<span>tbsp</span></td>
+              <td class='middle button'> <button ><a> <i class='ri-edit-fill'></i> </a> </button> </td>
+              <td class='right button'> <button> <a> <i class='ri-delete-bin-7-fill'></i> </a> </button> </td>
+            </tr>
+            <tr>
+            <th>Strawberry <br/><span>Measured as/for Strawberry Syrup</span></th>
+              <td>32<span>pieces</span></td>
+              <td class="middle">Tablespoon<span>(tbsp)</span</td>
+              <td class="middle"><!--Interval--></td>
+              <td class="middle">~6<span>tbsp</span></td>
+              <td class="middle">~7<span>tbsp</span></td>
+              <td class="middle">~8<span>tbsp</span></td>
+              <td class='middle button'> <button ><a> <i class='ri-edit-fill'></i> </a> </button> </td>
+              <td class='right button'> <button> <a> <i class='ri-delete-bin-7-fill'></i> </a> </button> </td>
+            </tr>
+          </table>
+          </div>
+          <div class="content-text">
+            <h2> Output</h2>
+            <p> List of Milkteas that can be served</p>
+
+
+                <section class="grid-output" style="margin-top: 80px; margin-right: 40px;">
+                  <article>
+                    <div class="center">
+                      <div class="ImgHolder">
+                        <img src="ASSETS\IMAGES\strawberry.png" width="35%" style="margin-left: 0px;"/>
+                        <h4>Strawberry Deluxe</h4>
+                        <p>₱150</p>
+                        <ul>
+                          <li>~8oz Milk</li>
+                          <li>1 tbsp Tea</li>
+                          <li>~7 tbsp Strawberry Syrup</li>
+                        </ul>
+                      </div>    
+                    </div>
+                  </article>
+            
+            
+                  <article>
+                    <div class="center">
+                      <div class="ImgHolder">
+                        <img src="ASSETS\IMAGES\brownsugar.png" width="35%" style="margin-left: 0px;"/>
+                        <h4>Brown Sugar Milk Tea</h4>
+                        <p>₱150</p>
+                        <ul>
+                          <li>~8oz Milk</li>
+                          <li>1 tbsp Tea</li>
+                          <li>~2 cups brown sugar</li>
+                        </ul>
+                      </div>    
+                    </div>
+                  </article>
+
+                </section>
+
+    </article>
   </div>
 </section>
 
@@ -161,6 +309,7 @@
 
 
 <div id="cont" class="cont">
+  
 <?php 
 include "DATABASE/dbh.php";
 $id = $_GET['edit'];
@@ -170,18 +319,34 @@ $row = $query->fetch_assoc();
 ?>
 
 <form method="POST" action="DATABASE/edit.php" autocomplete="off">
+<label for="id">ID:</label>
+    <input type="text" id="id" name="id" value="<?=$row['id']?>">
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" value="<?=$row['username']?>">
     <label for="email">Email:</label>
-    <input type="email" id="email" name="email" value="<?=$row['email']?>">
-    <button type="submit" name="submit">Update</button>
+    <input type="email" id="email" name="email" value="<?=$row['email']?>"> <br/>
+    <button type="submit" name="submit" id="submit" class="login-btn">Update</button>
 </form>
 </div>
 
 </section>
 
+<div id="cont2" class="cont">
+    <div>
+                <div>
+                <h2>Add User</h2>
 
+                <form action="DATABASE/DBSignUp.php" method="POST"  autocomplete="off">  <!--REG FORM (PHPVIEW) --> 
+                    <?php
+                    signup_inputs();
+                    ?>
+                        <button type="submit" name="reg_user" class="submit login-btn">ADD USER</button>
+                </form>
+            <button type="button" id="close" class="login-btn">Close Form</button>
 
+            </div>
+        </div>
+</div>
 
 
 
@@ -228,20 +393,16 @@ $row = $query->fetch_assoc();
 
 <script>//DELETE OVERLAY
 $(document).ready(function() {
-  // Check if the flag is set in Local Storage
   if (localStorage.getItem('executeCodeAfterRefresh')) {
     $('#cont').css('display', 'block');
     $('#overlay').css('display', 'block');
     $('body').css('overflow-y', 'hidden');
-    // Clear the flag from Local Storage
     localStorage.removeItem('executeCodeAfterRefresh');
   }
 });
 
 function setFlagAndReload(url) {
-  // Set the flag in Local Storage
   localStorage.setItem('executeCodeAfterRefresh', 'true');
-  // Reload the page
   window.location.href = url;
 }
 
@@ -258,6 +419,28 @@ function setFlagAndReload(url) {
         $('body').css('overflow', 'auto');
     });
 
+
+  </script>
+  <script> //REGISTER BUTTON
+document.querySelector('.img__btn').addEventListener('click', function() {
+  document.querySelector('.cont2').classList.toggle('s--signup');
+});
+</script>
+
+<script>//REGISTER OVERLAY
+document.getElementById('Reg').addEventListener('click', function() {
+    console.log('Button clicked!');
+    document.getElementById('cont2').style.display = 'block';
+    document.getElementById('overlay').style.display = 'block';
+    document.getElementsByTagName("BODY")[0].style.overflow = "hidden";
+});
+
+    document.getElementById('close').addEventListener('click', function() {
+      console.log('Button clicked!');
+        document.getElementById('cont2').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+        document.getElementsByTagName("BODY")[0].style.overflow = "auto";
+    });
 
   </script>
 </body>
