@@ -172,7 +172,7 @@
             <h2> Products </h2>
             <p> List of all products </p>
           </div>
-          <button class="add" style="margin-left: 25px; margin-top:8px;"><i class="ri-add-fill"></i></button>
+          <button id="Reg1" class="add" style="margin-left: 25px; margin-top:8px;"><i class="ri-add-fill"></i></button>
   <?php
             $sql = "SELECT * FROM products";
             $result = mysqli_query($conn, $sql);
@@ -189,12 +189,12 @@
                     $rowColor = $rowNumber % 2 == 0 ? "even" : "odd";
 
                     echo "<tr class='$rowColor'>";
-                    echo "<td>" . $row['ID'] . "</td>";
+                    echo "<td>" . $row['id'] . "</td>";
                     echo "<td class='middle'>" . $row['Name'] . "</td>";
                     echo "<td class='middle'>" . $row['Price'] . "</td>";
                     ?>
                       <td class='middle button'> <button ><a> <i class='ri-edit-fill'></i> </a> </button> </td>
-                      <td class='right button'> <button> <a> <i class='ri-delete-bin-7-fill'></i> </a> </button> </td>
+                      <td class='right button'> <button> <a href="DATABASE/ProductDelete.php?delete=<?=$row['id'];?>"> <i class='ri-delete-bin-7-fill'></i> </a> </button> </td>
 
 
                     <?php
@@ -334,15 +334,39 @@ $row = $query->fetch_assoc();
 <div id="cont2" class="cont">
     <div>
                 <div>
-                <h2>Add User</h2>
+                <h2 style="margin-top: 50px;" >Add User</h2>
 
-                <form action="DATABASE/DBSignUp.php" method="POST"  autocomplete="off">  <!--REG FORM (PHPVIEW) --> 
+                <form action="DATABASE/DBAdminSignUp.php" method="POST"  autocomplete="off">  <!--REG FORM (PHPVIEW) --> 
                     <?php
                     signup_inputs();
                     ?>
                         <button type="submit" name="reg_user" class="submit login-btn">ADD USER</button>
                 </form>
             <button type="button" id="close" class="login-btn">Close Form</button>
+
+            </div>
+        </div>
+</div>
+
+<div id="cont3" class="cont"> <!-- PRODUCTS --> 
+    <div>
+                <div>
+                <h2 style="margin-top: 50px;" >Add Product</h2>
+
+                <form action="DATABASE/DBAdminProducts.php" method="POST"  autocomplete="off">  
+
+                <label>
+        <span>Product Name</span>
+        <input type="text" name="name" placeholder="Product Name"/>
+        </label>
+
+        <label>
+            <span>Price</span>
+            <input type="number" name="price" placeholder="Price" />
+        </label>
+                        <button type="submit" name="reg_user" class="submit login-btn">ADD PRODUCT</button>
+                </form>
+            <button type="button" id="close1" class="login-btn">Close Form</button>
 
             </div>
         </div>
@@ -415,6 +439,7 @@ function setFlagAndReload(url) {
     
     $('.navbar').click(function(event) {
         $('#cont').css('display', 'none');
+        $('#cont2').css('display', 'none');
         $('#overlay').css('display', 'none');
         $('body').css('overflow', 'auto');
     });
@@ -443,5 +468,24 @@ document.getElementById('Reg').addEventListener('click', function() {
     });
 
   </script>
+
+<script>//REGISTER OVERLAY
+document.getElementById('Reg1').addEventListener('click', function() {
+    console.log('Button clicked!');
+    document.getElementById('cont3').style.display = 'block';
+    document.getElementById('overlay').style.display = 'block';
+    document.getElementsByTagName("BODY")[0].style.overflow = "hidden";
+});
+
+    document.getElementById('close1').addEventListener('click', function() {
+      console.log('Button clicked!');
+        document.getElementById('cont3').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+        document.getElementsByTagName("BODY")[0].style.overflow = "auto";
+    });
+
+  </script>
+
+
 </body>
 </html>
